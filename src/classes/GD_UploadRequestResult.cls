@@ -26,6 +26,7 @@ public with sharing class GD_UploadRequestResult {
 	public String file_type { get; set; }
 	public Long size { get; set; }
 	public Integer version { get; set; }
+	public Double view_job_id { get; set; }
 	public String thumbnail { get; set; }
 	public Double id { get; set; }
 	public String guid { get; set; }

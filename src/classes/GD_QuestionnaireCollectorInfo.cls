@@ -25,7 +25,7 @@ public with sharing class GD_QuestionnaireCollectorInfo {
 	public String m_type { get; set; }
 	public String status { get; set; }
 	public Double questionnaire_id { get; set; }
-	public Integer resolved_exectuions { get; set; }
+	public Integer resolved_executions { get; set; }
 	public List<String> emails { get; set; }
 	public Long modified { get; set; }
 	

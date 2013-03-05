@@ -20,7 +20,7 @@ public with sharing class GD_ComparisonApi {
 	public String basePath { get; set; } 
 	
 	public GD_ComparisonApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_ComparisonApi(GD_ApiClient apiClient, String basePath){
@@ -28,37 +28,6 @@ public with sharing class GD_ComparisonApi {
 		this.basePath = basePath;
 	}
 	
-	/**
-	 * Download comparison result file
-	 *
-	 * @param userId User GUID (required).
-	 * @param resultFileId Comparison result file GUID (required).
-	 * @param format Comparison result file format (optional).
-	 *
-	 * @return Blob instance
-	 */
-	public Blob DownloadResult(String userId, String resultFileId, String format) {
-		if(userId == null || resultFileId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/comparison/{userId}/comparison/download';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (resultFileId != null) {
-			queryParams.put('resultFileId', GD_Utils.toPathValue(resultFileId));
-		}
-		if (format != null) {
-			queryParams.put('format', GD_Utils.toPathValue(format));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
-	}
-
 	/**
 	 * Compare
 	 *
@@ -174,6 +143,37 @@ public with sharing class GD_ComparisonApi {
 		Map<String, String> headerParams = new Map<String, String>();
 		// make the API Call
 		return (GD_DocumentDetailsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_DocumentDetailsResponse.class);
+	}
+
+	/**
+	 * Download comparison result file
+	 *
+	 * @param userId User GUID (required).
+	 * @param resultFileId Comparison result file GUID (required).
+	 * @param format Comparison result file format (optional).
+	 *
+	 * @return Blob instance
+	 */
+	public Blob DownloadResult(String userId, String resultFileId, String format) {
+		if(userId == null || resultFileId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/comparison/{userId}/comparison/download';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (resultFileId != null) {
+			queryParams.put('resultFileId', GD_Utils.toPathValue(resultFileId));
+		}
+		if (format != null) {
+			queryParams.put('format', GD_Utils.toPathValue(format));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
 	}
 
 	

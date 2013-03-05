@@ -32,6 +32,8 @@ public with sharing class GD_QuestionnaireInfo {
 	public Integer total_questions { get; set; }
 	public Long modified { get; set; }
 	public Long expires { get; set; }
+	public String folder { get; set; }
+	public String emails { get; set; }
 	
 
 }

@@ -20,7 +20,6 @@
  */
 public with sharing class GD_Country {
 
-	public String Name { get; set; }
 	
 
 }

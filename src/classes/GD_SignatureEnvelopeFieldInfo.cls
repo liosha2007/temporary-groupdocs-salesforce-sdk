@@ -28,7 +28,7 @@ public with sharing class GD_SignatureEnvelopeFieldInfo {
 	public Double order { get; set; }
 	public String regularExpression { get; set; }
 	public String getDataFrom { get; set; }
-	public String data { get; set; }
+	public List<Integer> data { get; set; }
 	public String fillTimeStamp { get; set; }
 	public Double signatureFieldId { get; set; }
 	public List<GD_SignatureEnvelopeFieldLocationInfo> locations { get; set; }

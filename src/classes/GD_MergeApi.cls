@@ -20,7 +20,7 @@ public with sharing class GD_MergeApi {
 	public String basePath { get; set; } 
 	
 	public GD_MergeApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_MergeApi(GD_ApiClient apiClient, String basePath){
@@ -28,236 +28,6 @@ public with sharing class GD_MergeApi {
 		this.basePath = basePath;
 	}
 	
-	/**
-	 * Get questionnaire collectors
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param questionnaireId Questionnaire identifier (required).
-	 *
-	 * @return GD_GetQuestionnaireCollectorsResponse instance
-	 */
-	public GD_GetQuestionnaireCollectorsResponse GetQuestionnaireCollectors(String userId, String questionnaireId) {
-		if(userId == null || questionnaireId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_GetQuestionnaireCollectorsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetQuestionnaireCollectorsResponse.class);
-	}
-
-	/**
-	 * Returns questionnaire collector
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param collectorId Questionnaire collector global unique identifier (required).
-	 *
-	 * @return GD_GetQuestionnaireCollectorResponse instance
-	 */
-	public GD_GetQuestionnaireCollectorResponse GetQuestionnaireCollector(String userId, String collectorId) {
-		if(userId == null || collectorId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'collectorId' + '}', GD_Utils.toPathValue(collectorId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_GetQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetQuestionnaireCollectorResponse.class);
-	}
-
-	/**
-	 * Add questionnaire collector
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param questionnaireId Questionnaire identifier (required).
-	 * @param body Questionnaire collector to be added (required).
-	 *
-	 * @return GD_AddQuestionnaireCollectorResponse instance
-	 */
-	public GD_AddQuestionnaireCollectorResponse AddQuestionnaireCollector(String userId, String questionnaireId, GD_QuestionnaireCollectorInfo body) {
-		if(userId == null || questionnaireId == null || body == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_AddQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_AddQuestionnaireCollectorResponse.class);
-	}
-
-	/**
-	 * Update questionnaire collector
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param collectorId Questionnaire collector global unique identifier (required).
-	 * @param body Questionnaire collector data (required).
-	 *
-	 * @return GD_UpdateQuestionnaireCollectorResponse instance
-	 */
-	public GD_UpdateQuestionnaireCollectorResponse UpdateQuestionnaireCollector(String userId, String collectorId, GD_QuestionnaireCollectorInfo body) {
-		if(userId == null || collectorId == null || body == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'collectorId' + '}', GD_Utils.toPathValue(collectorId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_UpdateQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_UpdateQuestionnaireCollectorResponse.class);
-	}
-
-	/**
-	 * Removes questionnaire collector
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param collectorId Questionnaire collector global unique identifier (required).
-	 *
-	 * @return GD_DeleteQuestionnaireCollectorResponse instance
-	 */
-	public GD_DeleteQuestionnaireCollectorResponse DeleteQuestionnaireCollector(String userId, String collectorId) {
-		if(userId == null || collectorId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'collectorId' + '}', GD_Utils.toPathValue(collectorId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_DeleteQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_DeleteQuestionnaireCollectorResponse.class);
-	}
-
-	/**
-	 * Get template documents information
-	 *
-	 * @param userId User global unique identifier (required).
-	 *
-	 * @return GD_GetTemplatesResponse instance
-	 */
-	public GD_GetTemplatesResponse GetTemplates(String userId) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/templates';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_GetTemplatesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetTemplatesResponse.class);
-	}
-
-	/**
-	 * Get questionnaire fields
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param questionnaireId Questionnaire global unique identifier (required).
-	 * @param includeGeometry A flag indicating whether fields coordinates and size should be included into the response. (optional).
-	 *
-	 * @return GD_TemplateFieldsResponse instance
-	 */
-	public GD_TemplateFieldsResponse GetQuestionnaireFields(String userId, String questionnaireId, Boolean includeGeometry) {
-		if(userId == null || questionnaireId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/fields';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (includeGeometry != null) {
-			queryParams.put('include_geometry', GD_Utils.toPathValue(includeGeometry));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_TemplateFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_TemplateFieldsResponse.class);
-	}
-
-	/**
-	 * Get questionnaire metadata
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param questionnaireId Questionnaire global unique identifier (required).
-	 *
-	 * @return GD_GetQuestionnaireMetadataResponse instance
-	 */
-	public GD_GetQuestionnaireMetadataResponse GetQuestionnaireMetadata(String userId, String questionnaireId) {
-		if(userId == null || questionnaireId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_GetQuestionnaireMetadataResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetQuestionnaireMetadataResponse.class);
-	}
-
-	/**
-	 * Update questionnaire metadata
-	 *
-	 * @param userId User global unique identifier (required).
-	 * @param questionnaireId Questionnaire global unique identifier (required).
-	 * @param body Questionnaire metadata to update (required).
-	 *
-	 * @return GD_UpdateQuestionnaireResponse instance
-	 */
-	public GD_UpdateQuestionnaireResponse UpdateQuestionnaireMetadata(String userId, String questionnaireId, GD_QuestionnaireMetadata body) {
-		if(userId == null || questionnaireId == null || body == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_UpdateQuestionnaireResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_UpdateQuestionnaireResponse.class);
-	}
-
 	/**
 	 * Add job document datasource
 	 *
@@ -1033,6 +803,236 @@ public with sharing class GD_MergeApi {
 		Map<String, String> headerParams = new Map<String, String>();
 		// make the API Call
 		return (GD_UpdateQuestionnaireExecutionResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_UpdateQuestionnaireExecutionResponse.class);
+	}
+
+	/**
+	 * Get questionnaire collectors
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param questionnaireId Questionnaire identifier (required).
+	 *
+	 * @return GD_GetQuestionnaireCollectorsResponse instance
+	 */
+	public GD_GetQuestionnaireCollectorsResponse GetQuestionnaireCollectors(String userId, String questionnaireId) {
+		if(userId == null || questionnaireId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_GetQuestionnaireCollectorsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetQuestionnaireCollectorsResponse.class);
+	}
+
+	/**
+	 * Returns questionnaire collector
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param collectorId Questionnaire collector global unique identifier (required).
+	 *
+	 * @return GD_GetQuestionnaireCollectorResponse instance
+	 */
+	public GD_GetQuestionnaireCollectorResponse GetQuestionnaireCollector(String userId, String collectorId) {
+		if(userId == null || collectorId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'collectorId' + '}', GD_Utils.toPathValue(collectorId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_GetQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetQuestionnaireCollectorResponse.class);
+	}
+
+	/**
+	 * Add questionnaire collector
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param questionnaireId Questionnaire identifier (required).
+	 * @param body Questionnaire collector to be added (required).
+	 *
+	 * @return GD_AddQuestionnaireCollectorResponse instance
+	 */
+	public GD_AddQuestionnaireCollectorResponse AddQuestionnaireCollector(String userId, String questionnaireId, GD_QuestionnaireCollectorInfo body) {
+		if(userId == null || questionnaireId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_AddQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_AddQuestionnaireCollectorResponse.class);
+	}
+
+	/**
+	 * Update questionnaire collector
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param collectorId Questionnaire collector global unique identifier (required).
+	 * @param body Questionnaire collector data (required).
+	 *
+	 * @return GD_UpdateQuestionnaireCollectorResponse instance
+	 */
+	public GD_UpdateQuestionnaireCollectorResponse UpdateQuestionnaireCollector(String userId, String collectorId, GD_QuestionnaireCollectorInfo body) {
+		if(userId == null || collectorId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'collectorId' + '}', GD_Utils.toPathValue(collectorId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_UpdateQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_UpdateQuestionnaireCollectorResponse.class);
+	}
+
+	/**
+	 * Removes questionnaire collector
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param collectorId Questionnaire collector global unique identifier (required).
+	 *
+	 * @return GD_DeleteQuestionnaireCollectorResponse instance
+	 */
+	public GD_DeleteQuestionnaireCollectorResponse DeleteQuestionnaireCollector(String userId, String collectorId) {
+		if(userId == null || collectorId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'collectorId' + '}', GD_Utils.toPathValue(collectorId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_DeleteQuestionnaireCollectorResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_DeleteQuestionnaireCollectorResponse.class);
+	}
+
+	/**
+	 * Get template documents information
+	 *
+	 * @param userId User global unique identifier (required).
+	 *
+	 * @return GD_GetTemplatesResponse instance
+	 */
+	public GD_GetTemplatesResponse GetTemplates(String userId) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/templates';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_GetTemplatesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetTemplatesResponse.class);
+	}
+
+	/**
+	 * Get questionnaire fields
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param questionnaireId Questionnaire global unique identifier (required).
+	 * @param includeGeometry A flag indicating whether fields coordinates and size should be included into the response. (optional).
+	 *
+	 * @return GD_TemplateFieldsResponse instance
+	 */
+	public GD_TemplateFieldsResponse GetQuestionnaireFields(String userId, String questionnaireId, Boolean includeGeometry) {
+		if(userId == null || questionnaireId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/fields';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (includeGeometry != null) {
+			queryParams.put('include_geometry', GD_Utils.toPathValue(includeGeometry));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_TemplateFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_TemplateFieldsResponse.class);
+	}
+
+	/**
+	 * Get questionnaire metadata
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param questionnaireId Questionnaire global unique identifier (required).
+	 *
+	 * @return GD_GetQuestionnaireMetadataResponse instance
+	 */
+	public GD_GetQuestionnaireMetadataResponse GetQuestionnaireMetadata(String userId, String questionnaireId) {
+		if(userId == null || questionnaireId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_GetQuestionnaireMetadataResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetQuestionnaireMetadataResponse.class);
+	}
+
+	/**
+	 * Update questionnaire metadata
+	 *
+	 * @param userId User global unique identifier (required).
+	 * @param questionnaireId Questionnaire global unique identifier (required).
+	 * @param body Questionnaire metadata to update (required).
+	 *
+	 * @return GD_UpdateQuestionnaireResponse instance
+	 */
+	public GD_UpdateQuestionnaireResponse UpdateQuestionnaireMetadata(String userId, String questionnaireId, GD_QuestionnaireMetadata body) {
+		if(userId == null || questionnaireId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}', GD_Utils.toPathValue(questionnaireId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_UpdateQuestionnaireResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_UpdateQuestionnaireResponse.class);
 	}
 
 	

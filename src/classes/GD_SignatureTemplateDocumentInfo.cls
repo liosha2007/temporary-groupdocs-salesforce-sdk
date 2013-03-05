@@ -27,6 +27,7 @@ public with sharing class GD_SignatureTemplateDocumentInfo {
 	public String originalDocumentMD5 { get; set; }
 	public Integer originalDocumentPagesCount { get; set; }
 	public Integer fieldsCount { get; set; }
+	public String originalDocumentId { get; set; }
 	
 
 }

@@ -20,7 +20,7 @@ public with sharing class GD_DocApi {
 	public String basePath { get; set; } 
 	
 	public GD_DocApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_DocApi(GD_ApiClient apiClient, String basePath){

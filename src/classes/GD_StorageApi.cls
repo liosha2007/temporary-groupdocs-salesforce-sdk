@@ -20,7 +20,7 @@ public with sharing class GD_StorageApi {
 	public String basePath { get; set; } 
 	
 	public GD_StorageApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_StorageApi(GD_ApiClient apiClient, String basePath){
@@ -330,12 +330,12 @@ public with sharing class GD_StorageApi {
 	 * @param userId User GUID (required).
 	 * @param path Path (required).
 	 * @param mode Mode (optional).
-	 * @param Groupdocs_Copy File ID (copy) (optional).
 	 * @param Groupdocs_Move File ID (move) (optional).
+	 * @param Groupdocs_Copy File ID (copy) (optional).
 	 *
 	 * @return GD_FileMoveResponse instance
 	 */
-	public GD_FileMoveResponse MoveFile(String userId, String path, String mode, String Groupdocs_Copy, String Groupdocs_Move) {
+	public GD_FileMoveResponse MoveFile(String userId, String path, String mode, String Groupdocs_Move, String Groupdocs_Copy) {
 		if(userId == null || path == null ) {
 			throw new GD_ApiException('missing required params');
 		}
@@ -351,11 +351,11 @@ public with sharing class GD_StorageApi {
 		}
 		// add header parameters
 		Map<String, String> headerParams = new Map<String, String>();
-		if (Groupdocs_Copy != null) {
-			headerParams.put('Groupdocs-Copy', GD_Utils.toPathValue(Groupdocs_Copy));
-		}
 		if (Groupdocs_Move != null) {
 			headerParams.put('Groupdocs-Move', GD_Utils.toPathValue(Groupdocs_Move));
+		}
+		if (Groupdocs_Copy != null) {
+			headerParams.put('Groupdocs-Copy', GD_Utils.toPathValue(Groupdocs_Copy));
 		}
 		// make the API Call
 		return (GD_FileMoveResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_FileMoveResponse.class);

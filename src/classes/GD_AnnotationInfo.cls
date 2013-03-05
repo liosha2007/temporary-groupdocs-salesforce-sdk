@@ -32,6 +32,7 @@ public with sharing class GD_AnnotationInfo {
 	public String access { get; set; }
 	public List<GD_AnnotationReplyInfo> replies { get; set; }
 	public Long createdOn { get; set; }
+	public Integer fontColor { get; set; }
 	public String fieldText { get; set; }
 	public String fontFamily { get; set; }
 	public Double fontSize { get; set; }

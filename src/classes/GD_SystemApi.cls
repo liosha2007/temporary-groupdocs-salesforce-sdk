@@ -20,7 +20,7 @@ public with sharing class GD_SystemApi {
 	public String basePath { get; set; } 
 	
 	public GD_SystemApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_SystemApi(GD_ApiClient apiClient, String basePath){
@@ -171,6 +171,30 @@ public with sharing class GD_SystemApi {
 		Map<String, String> headerParams = new Map<String, String>();
 		// make the API Call
 		return (GD_GetStatesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_GetStatesResponse.class);
+	}
+
+	/**
+	 * Set user billing address
+	 *
+	 * @param userId User GUID (required).
+	 * @param body Billing Address (required).
+	 *
+	 * @return GD_GetBillingAddressResponse instance
+	 */
+	public GD_GetBillingAddressResponse SetBillingAddress(String userId, GD_BillingAddressInfo body) {
+		if(userId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/system/{userId}/billingaddress';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_GetBillingAddressResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_GetBillingAddressResponse.class);
 	}
 
 	

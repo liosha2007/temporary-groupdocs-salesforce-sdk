@@ -26,7 +26,7 @@ public with sharing class GD_SignatureFormFieldInfo {
 	public String name { get; set; }
 	public Boolean mandatory { get; set; }
 	public String regularExpression { get; set; }
-	public String data { get; set; }
+	public List<Integer> data { get; set; }
 	public String fillTimeStamp { get; set; }
 	public List<GD_SignatureFormFieldLocationInfo> locations { get; set; }
 	public Integer fieldType { get; set; }

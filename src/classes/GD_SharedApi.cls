@@ -20,7 +20,7 @@ public with sharing class GD_SharedApi {
 	public String basePath { get; set; } 
 	
 	public GD_SharedApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_SharedApi(GD_ApiClient apiClient, String basePath){
@@ -32,13 +32,13 @@ public with sharing class GD_SharedApi {
 	 * Download
 	 *
 	 * @param guid GUID (required).
-	 * @param fileName File name (optional).
+	 * @param fileName File name (required).
 	 * @param render Render (optional).
 	 *
 	 * @return Blob instance
 	 */
 	public Blob Download(String guid, String fileName, Boolean render) {
-		if(guid == null ) {
+		if(guid == null || fileName == null ) {
 			throw new GD_ApiException('missing required params');
 		}
 		String resourcePath = '/shared/files/{guid}';

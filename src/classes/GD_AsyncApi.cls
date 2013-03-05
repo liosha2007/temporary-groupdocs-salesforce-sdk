@@ -20,7 +20,7 @@ public with sharing class GD_AsyncApi {
 	public String basePath { get; set; } 
 	
 	public GD_AsyncApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_AsyncApi(GD_ApiClient apiClient, String basePath){
@@ -411,16 +411,15 @@ public with sharing class GD_AsyncApi {
 	 *
 	 * @param userId User GUID (required).
 	 * @param fileId File GUID (required).
-	 * @param targetType Target type (optional).
 	 * @param emailResults Email results (optional).
 	 * @param description Description (optional).
 	 * @param printScript Print (optional).
 	 * @param callbackUrl Callback url (optional).
-	 * @param checkDocumentOwnership Check Document Ownership (optional).
+	 * @param new_type Target type (optional).
 	 *
 	 * @return GD_ConvertResponse instance
 	 */
-	public GD_ConvertResponse Convert(String userId, String fileId, String targetType, String emailResults, String description, Boolean printScript, String callbackUrl, Boolean checkDocumentOwnership) {
+	public GD_ConvertResponse Convert(String userId, String fileId, String emailResults, String description, Boolean printScript, String callbackUrl, String new_type) {
 		if(userId == null || fileId == null ) {
 			throw new GD_ApiException('missing required params');
 		}
@@ -431,9 +430,6 @@ public with sharing class GD_AsyncApi {
 		resourcePath = resourcePath.replace('{' + 'fileId' + '}', GD_Utils.toPathValue(fileId));
 		// add query parameters
 		Map<String, String> queryParams = new Map<String, String>();
-		if (targetType != null) {
-			queryParams.put('new_type', GD_Utils.toPathValue(targetType));
-		}
 		if (emailResults != null) {
 			queryParams.put('email_results', GD_Utils.toPathValue(emailResults));
 		}
@@ -446,8 +442,8 @@ public with sharing class GD_AsyncApi {
 		if (callbackUrl != null) {
 			queryParams.put('callback', GD_Utils.toPathValue(callbackUrl));
 		}
-		if (checkDocumentOwnership != null) {
-			queryParams.put('checkDocumentOwnership', GD_Utils.toPathValue(checkDocumentOwnership));
+		if (new_type != null) {
+			queryParams.put('new_type', GD_Utils.toPathValue(new_type));
 		}
 		// add header parameters
 		Map<String, String> headerParams = new Map<String, String>();

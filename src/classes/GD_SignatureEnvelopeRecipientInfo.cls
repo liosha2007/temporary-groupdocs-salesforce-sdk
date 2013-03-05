@@ -35,6 +35,7 @@ public with sharing class GD_SignatureEnvelopeRecipientInfo {
 	public String signatureHost { get; set; }
 	public String signatureLocation { get; set; }
 	public String signatureBrowser { get; set; }
+	public String embedUrl { get; set; }
 	
 
 }

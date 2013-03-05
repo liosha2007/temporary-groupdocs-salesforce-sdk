@@ -18,14 +18,9 @@
  * 
  *
  */
-public with sharing class GD_ChangesResult {
+public with sharing class GD_SignatureEnvelopeSendResult {
 
-	public String result_file_Id { get; set; }
-	public String source_file_Id { get; set; }
-	public String target_file_Id { get; set; }
-	public String source_file_name { get; set; }
-	public String target_file_name { get; set; }
-	public List<GD_ChangeInfo> changes { get; set; }
+	public List<GD_SignatureEnvelopeRecipientInfo> recipients { get; set; }
 	
 
 }

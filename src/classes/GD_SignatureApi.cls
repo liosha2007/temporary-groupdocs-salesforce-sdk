@@ -20,7 +20,7 @@ public with sharing class GD_SignatureApi {
 	public String basePath { get; set; } 
 	
 	public GD_SignatureApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_SignatureApi(GD_ApiClient apiClient, String basePath){
@@ -28,56 +28,6 @@ public with sharing class GD_SignatureApi {
 		this.basePath = basePath;
 	}
 	
-	/**
-	 * Get template recources
-	 *
-	 * @param userId User GUID (required).
-	 *
-	 * @return GD_SignatureTemplateResourcesResponse instance
-	 */
-	public GD_SignatureTemplateResourcesResponse GetSignatureTemplateResources(String userId) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/templates/resources';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureTemplateResourcesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureTemplateResourcesResponse.class);
-	}
-
-	/**
-	 * Get signature fields
-	 *
-	 * @param userId User GUID (required).
-	 * @param fieldId Filter fields by id (optional).
-	 *
-	 * @return GD_SignatureFieldsResponse instance
-	 */
-	public GD_SignatureFieldsResponse GetFieldsList(String userId, String fieldId) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/fields';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (fieldId != null) {
-			queryParams.put('id', GD_Utils.toPathValue(fieldId));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFieldsResponse.class);
-	}
-
 	/**
 	 * Create signature field
 	 *
@@ -293,6 +243,1636 @@ public with sharing class GD_SignatureApi {
 		Map<String, String> headerParams = new Map<String, String>();
 		// make the API Call
 		return (GD_SignatureContactsImportResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureContactsImportResponse.class);
+	}
+
+	/**
+	 * Add Contact Integration Authorization
+	 *
+	 * @param userId User GUID (required).
+	 * @param body Authorization settings (optional).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse AddContactIntegration(String userId, String body) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/integration';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Sign document
+	 *
+	 * @param userId User GUID (required).
+	 * @param body Settings of the signing document (optional).
+	 *
+	 * @return GD_SignatureSignDocumentsResponse instance
+	 */
+	public GD_SignatureSignDocumentsResponse SignDocument(String userId, GD_SignatureSignDocumentSettings body) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/sign';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureSignDocumentsResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureSignDocumentsResponse.class);
+	}
+
+	/**
+	 * Archive envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse ArchiveSignatureEnvelope(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/archive';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get envelope audit logs
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureEnvelopeAuditLogsResponse instance
+	 */
+	public GD_SignatureEnvelopeAuditLogsResponse GetEnvelopeAuditLogs(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/logs';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeAuditLogsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeAuditLogsResponse.class);
+	}
+
+	/**
+	 * Create signature envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param name Envelope name (optional).
+	 * @param body Settings of the new envelope (optional).
+	 * @param templateGuid A templateGuid of the template which will be used to created the new envelope (optional).
+	 * @param envelopeGuid A envelopeGuid of the envelope which will be used to created the new envelope (optional).
+	 * @param documentGuid A documentGuid of the document which will be added to the new created envelope (optional).
+	 *
+	 * @return GD_SignatureEnvelopeResponse instance
+	 */
+	public GD_SignatureEnvelopeResponse CreateSignatureEnvelope(String userId, String name, GD_SignatureEnvelopeSettings body, String templateGuid, Integer envelopeGuid, Integer documentGuid) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelope';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (name != null) {
+			queryParams.put('name', GD_Utils.toPathValue(name));
+		}
+		if (templateGuid != null) {
+			queryParams.put('templateGuid', GD_Utils.toPathValue(templateGuid));
+		}
+		if (envelopeGuid != null) {
+			queryParams.put('envelopeGuid', GD_Utils.toPathValue(envelopeGuid));
+		}
+		if (documentGuid != null) {
+			queryParams.put('documentGuid', GD_Utils.toPathValue(documentGuid));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeResponse.class);
+	}
+
+	/**
+	 * Decline envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeclineEnvelope(String userId, String envelopeId, String recipientId) {
+		if(userId == null || envelopeId == null || recipientId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/decline';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Delegate envelope recipient
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 * @param recipientEmail Delegated recipient email (required).
+	 * @param recipientFirstName Delegated recipient first name (required).
+	 * @param recipientLastName Delegated recipient last name (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DelegateEnvelopeRecipient(String userId, String envelopeId, String recipientId, String recipientEmail, String recipientFirstName, String recipientLastName) {
+		if(userId == null || envelopeId == null || recipientId == null || recipientEmail == null || recipientFirstName == null || recipientLastName == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/delegate';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (recipientEmail != null) {
+			queryParams.put('email', GD_Utils.toPathValue(recipientEmail));
+		}
+		if (recipientFirstName != null) {
+			queryParams.put('firstname', GD_Utils.toPathValue(recipientFirstName));
+		}
+		if (recipientLastName != null) {
+			queryParams.put('lastname', GD_Utils.toPathValue(recipientLastName));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Delete signature envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureEnvelope(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Add document in envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param order Document order (optional).
+	 *
+	 * @return GD_SignatureEnvelopeDocumentResponse instance
+	 */
+	public GD_SignatureEnvelopeDocumentResponse AddSignatureEnvelopeDocument(String userId, String envelopeId, String documentId, Integer order) {
+		if(userId == null || envelopeId == null || documentId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/document/{documentId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (order != null) {
+			queryParams.put('order', GD_Utils.toPathValue(order));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeDocumentResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureEnvelopeDocumentResponse.class);
+	}
+
+	/**
+	 * Get signed envelope document
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 *
+	 * @return Blob instance
+	 */
+	public Blob GetSignedEnvelopeDocument(String userId, String envelopeId, String documentId) {
+		if(userId == null || envelopeId == null || documentId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/document/{documentId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
+	}
+
+	/**
+	 * Delete document from envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureEnvelopeDocument(String userId, String envelopeId, String documentId) {
+		if(userId == null || envelopeId == null || documentId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get documents in envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureEnvelopeDocumentsResponse instance
+	 */
+	public GD_SignatureEnvelopeDocumentsResponse GetSignatureEnvelopeDocuments(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeDocumentsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeDocumentsResponse.class);
+	}
+
+	/**
+	 * Get signed envelope documents
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return Blob instance
+	 */
+	public Blob GetSignedEnvelopeDocuments(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/get';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
+	}
+
+	/**
+	 * Add signature field for document in envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param body Settings of the field (optional).
+	 *
+	 * @return GD_SignatureEnvelopeFieldsResponse instance
+	 */
+	public GD_SignatureEnvelopeFieldsResponse AddSignatureEnvelopeField(String userId, String envelopeId, String documentId, String recipientId, String fieldId, GD_SignatureEnvelopeFieldSettings body) {
+		if(userId == null || envelopeId == null || documentId == null || recipientId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeFieldsResponse.class);
+	}
+
+	/**
+	 * Assign signature envelope field
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param body Settings of the field (optional).
+	 *
+	 * @return GD_SignatureEnvelopeFieldResponse instance
+	 */
+	public GD_SignatureEnvelopeFieldResponse AssignSignatureEnvelopeField(String userId, String envelopeId, String documentId, String fieldId, GD_SignatureEnvelopeAssignFieldSettings body) {
+		if(userId == null || envelopeId == null || documentId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/field/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
+	}
+
+	/**
+	 * Fill envelope field
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param signatureId SignatureId GUID (optional).
+	 * @param body Data to be placed in field (optional).
+	 *
+	 * @return GD_SignatureEnvelopeFieldResponse instance
+	 */
+	public GD_SignatureEnvelopeFieldResponse FillEnvelopeField(String userId, String envelopeId, String documentId, String recipientId, String fieldId, String signatureId, Blob body) {
+		if(userId == null || envelopeId == null || documentId == null || recipientId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (signatureId != null) {
+			queryParams.put('signatureId', GD_Utils.toPathValue(signatureId));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
+	}
+
+	/**
+	 * Modify signature envelope field location
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param locationId Field location GUID (required).
+	 * @param body Settings of the field location (optional).
+	 *
+	 * @return GD_SignatureEnvelopeFieldResponse instance
+	 */
+	public GD_SignatureEnvelopeFieldResponse ModifySignatureEnvelopeFieldLocation(String userId, String envelopeId, String documentId, String recipientId, String fieldId, String locationId, GD_SignatureEnvelopeFieldLocationSetting body) {
+		if(userId == null || envelopeId == null || documentId == null || recipientId == null || fieldId == null || locationId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/fields/{fieldId}/locations/{locationId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
+	}
+
+	/**
+	 * Remove signature envelope field location
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param locationId Field location GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureEnvelopeFieldLocation(String userId, String envelopeId, String fieldId, String locationId) {
+		if(userId == null || envelopeId == null || fieldId == null || locationId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields/{fieldId}/locations/{locationId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Modify signature envelope field
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param body Settings of the field (optional).
+	 *
+	 * @return GD_SignatureEnvelopeFieldResponse instance
+	 */
+	public GD_SignatureEnvelopeFieldResponse ModifySignatureEnvelopeField(String userId, String envelopeId, String documentId, String fieldId, GD_SignatureEnvelopeFieldSettings body) {
+		if(userId == null || envelopeId == null || documentId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/field/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
+	}
+
+	/**
+	 * Delete signature envelope field
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param fieldId Field GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureEnvelopeField(String userId, String envelopeId, String fieldId) {
+		if(userId == null || envelopeId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get signature field for document in envelope per recipient
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param documentId Document GUID (optional).
+	 * @param recipientId Recipient GUID (optional).
+	 *
+	 * @return GD_SignatureEnvelopeFieldsResponse instance
+	 */
+	public GD_SignatureEnvelopeFieldsResponse GetSignatureEnvelopeFields(String userId, String envelopeId, String documentId, String recipientId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (documentId != null) {
+			queryParams.put('document', GD_Utils.toPathValue(documentId));
+		}
+		if (recipientId != null) {
+			queryParams.put('recipient', GD_Utils.toPathValue(recipientId));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeFieldsResponse.class);
+	}
+
+	/**
+	 * Get signature envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureEnvelopeResponse instance
+	 */
+	public GD_SignatureEnvelopeResponse GetSignatureEnvelope(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeResponse.class);
+	}
+
+	/**
+	 * Modify signature envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param body Settings of the envelope (optional).
+	 *
+	 * @return GD_SignatureEnvelopeResponse instance
+	 */
+	public GD_SignatureEnvelopeResponse ModifySignatureEnvelope(String userId, String envelopeId, GD_SignatureEnvelopeSettings body) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeResponse.class);
+	}
+
+	/**
+	 * Add signature envelope recipient
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param recipientEmail Recipient email (required).
+	 * @param recipientFirstName Recipient first name (required).
+	 * @param recipientLastName Recipient last name (required).
+	 * @param order Recipient order (optional).
+	 * @param role Recipient role id (required).
+	 *
+	 * @return GD_SignatureEnvelopeRecipientResponse instance
+	 */
+	public GD_SignatureEnvelopeRecipientResponse AddSignatureEnvelopeRecipient(String userId, String envelopeId, String recipientEmail, String recipientFirstName, String recipientLastName, Integer order, String role) {
+		if(userId == null || envelopeId == null || recipientEmail == null || recipientFirstName == null || recipientLastName == null || role == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (recipientEmail != null) {
+			queryParams.put('email', GD_Utils.toPathValue(recipientEmail));
+		}
+		if (recipientFirstName != null) {
+			queryParams.put('firstname', GD_Utils.toPathValue(recipientFirstName));
+		}
+		if (recipientLastName != null) {
+			queryParams.put('lastname', GD_Utils.toPathValue(recipientLastName));
+		}
+		if (order != null) {
+			queryParams.put('order', GD_Utils.toPathValue(order));
+		}
+		if (role != null) {
+			queryParams.put('role', GD_Utils.toPathValue(role));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeRecipientResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureEnvelopeRecipientResponse.class);
+	}
+
+	/**
+	 * Modify signature envelope recipient
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 * @param recipientEmail Recipient email (required).
+	 * @param recipientFirstName Recipient first name (required).
+	 * @param recipientLastName Recipient last name (required).
+	 * @param order Recipient order (optional).
+	 * @param role Recipient role id (required).
+	 *
+	 * @return GD_SignatureEnvelopeRecipientResponse instance
+	 */
+	public GD_SignatureEnvelopeRecipientResponse ModifySignatureEnvelopeRecipient(String userId, String envelopeId, String recipientId, String recipientEmail, String recipientFirstName, String recipientLastName, Integer order, String role) {
+		if(userId == null || envelopeId == null || recipientId == null || recipientEmail == null || recipientFirstName == null || recipientLastName == null || role == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (recipientEmail != null) {
+			queryParams.put('email', GD_Utils.toPathValue(recipientEmail));
+		}
+		if (recipientFirstName != null) {
+			queryParams.put('firstname', GD_Utils.toPathValue(recipientFirstName));
+		}
+		if (recipientLastName != null) {
+			queryParams.put('lastname', GD_Utils.toPathValue(recipientLastName));
+		}
+		if (order != null) {
+			queryParams.put('order', GD_Utils.toPathValue(order));
+		}
+		if (role != null) {
+			queryParams.put('role', GD_Utils.toPathValue(role));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeRecipientResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureEnvelopeRecipientResponse.class);
+	}
+
+	/**
+	 * Delete signature envelope recipient
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureEnvelopeRecipient(String userId, String envelopeId, String recipientId) {
+		if(userId == null || envelopeId == null || recipientId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipients/{recipientId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get signature envelope recipients
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureEnvelopeRecipientsResponse instance
+	 */
+	public GD_SignatureEnvelopeRecipientsResponse GetSignatureEnvelopeRecipients(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipients';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeRecipientsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeRecipientsResponse.class);
+	}
+
+	/**
+	 * Rename signature envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param name New envelope name (required).
+	 *
+	 * @return GD_SignatureEnvelopeResponse instance
+	 */
+	public GD_SignatureEnvelopeResponse RenameSignatureEnvelope(String userId, String envelopeId, String name) {
+		if(userId == null || envelopeId == null || name == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (name != null) {
+			queryParams.put('name', GD_Utils.toPathValue(name));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureEnvelopeResponse.class);
+	}
+
+	/**
+	 * Restart expired envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse RestartExpiredSignatureEnvelope(String userId, String envelopeId) {
+		if(userId == null || envelopeId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/restart';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Send envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param body Webhook Callback Url (required).
+	 *
+	 * @return GD_SignatureEnvelopeSendResponse instance
+	 */
+	public GD_SignatureEnvelopeSendResponse SignatureEnvelopeSend(String userId, String envelopeId, Blob body) {
+		if(userId == null || envelopeId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/send';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeSendResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeSendResponse.class);
+	}
+
+	/**
+	 * Sign envelope
+	 *
+	 * @param userId User GUID (required).
+	 * @param envelopeId Envelope GUID (required).
+	 * @param recipientId Recipient GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse SignEnvelope(String userId, String envelopeId, String recipientId) {
+		if(userId == null || envelopeId == null || recipientId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/sign';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
+		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get signature envelopes
+	 *
+	 * @param userId User GUID (required).
+	 * @param statusId Filter envelopes by statusId (optional).
+	 * @param page Show records for page number (optional).
+	 * @param m_date Filter envelopes by date (optional).
+	 * @param name Filter envelopes by name (optional).
+	 * @param recipient Filter envelopes by recipient email (optional).
+	 * @param document Filter envelopes by original document md5 checksum (optional).
+	 * @param records Show records count (optional).
+	 *
+	 * @return GD_SignatureEnvelopesResponse instance
+	 */
+	public GD_SignatureEnvelopesResponse GetSignatureEnvelopes(String userId, String statusId, Integer page, String m_date, String name, String recipient, String document, Integer records) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (statusId != null) {
+			queryParams.put('statusId', GD_Utils.toPathValue(statusId));
+		}
+		if (page != null) {
+			queryParams.put('page', GD_Utils.toPathValue(page));
+		}
+		if (m_date != null) {
+			queryParams.put('date', GD_Utils.toPathValue(m_date));
+		}
+		if (name != null) {
+			queryParams.put('name', GD_Utils.toPathValue(name));
+		}
+		if (recipient != null) {
+			queryParams.put('recipient', GD_Utils.toPathValue(recipient));
+		}
+		if (document != null) {
+			queryParams.put('document', GD_Utils.toPathValue(document));
+		}
+		if (records != null) {
+			queryParams.put('records', GD_Utils.toPathValue(records));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopesResponse.class);
+	}
+
+	/**
+	 * Get envelope recources
+	 *
+	 * @param userId User GUID (required).
+	 * @param statusIds Envelope status identifier - comma separated list (optional).
+	 *
+	 * @return GD_SignatureEnvelopeResourcesResponse instance
+	 */
+	public GD_SignatureEnvelopeResourcesResponse GetSignatureEnvelopeResources(String userId, String statusIds) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/resources';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (statusIds != null) {
+			queryParams.put('statusIds', GD_Utils.toPathValue(statusIds));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopeResourcesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeResourcesResponse.class);
+	}
+
+	/**
+	 * Get signature envelopes where the user is recipient
+	 *
+	 * @param userId User GUID (required).
+	 * @param statusId Filter envelopes by statusId (optional).
+	 * @param page Show records for page number (optional).
+	 * @param records Show records count (optional).
+	 *
+	 * @return GD_SignatureEnvelopesResponse instance
+	 */
+	public GD_SignatureEnvelopesResponse GetRecipientSignatureEnvelopes(String userId, String statusId, Integer page, Integer records) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/envelopes/recipient';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (statusId != null) {
+			queryParams.put('statusId', GD_Utils.toPathValue(statusId));
+		}
+		if (page != null) {
+			queryParams.put('page', GD_Utils.toPathValue(page));
+		}
+		if (records != null) {
+			queryParams.put('records', GD_Utils.toPathValue(records));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureEnvelopesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopesResponse.class);
+	}
+
+	/**
+	 * Archive signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse ArchiveSignatureForm(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/archive';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Complete signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse CompleteSignatureForm(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/complete';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Create signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param name Form name (optional).
+	 * @param templateId A templateGuid of the template which will be used to created the new form (optional).
+	 * @param assemblyId A guid of the assembly which will be used to created the new form (optional).
+	 * @param body Settings of the new form (optional).
+	 *
+	 * @return GD_SignatureFormResponse instance
+	 */
+	public GD_SignatureFormResponse CreateSignatureForm(String userId, String name, String templateId, Integer assemblyId, GD_SignatureFormSettings body) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/form';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (name != null) {
+			queryParams.put('name', GD_Utils.toPathValue(name));
+		}
+		if (templateId != null) {
+			queryParams.put('templateId', GD_Utils.toPathValue(templateId));
+		}
+		if (assemblyId != null) {
+			queryParams.put('assemblyId', GD_Utils.toPathValue(assemblyId));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureFormResponse.class);
+	}
+
+	/**
+	 * Delete signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureForm(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Add document in form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param order Document order (optional).
+	 *
+	 * @return GD_SignatureFormDocumentResponse instance
+	 */
+	public GD_SignatureFormDocumentResponse AddSignatureFormDocument(String userId, String formId, String documentId, Integer order) {
+		if(userId == null || formId == null || documentId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/document/{documentId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (order != null) {
+			queryParams.put('order', GD_Utils.toPathValue(order));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormDocumentResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureFormDocumentResponse.class);
+	}
+
+	/**
+	 * Delete document from form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param documentId Document GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureFormDocument(String userId, String formId, String documentId) {
+		if(userId == null || formId == null || documentId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get documents in form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return GD_SignatureFormDocumentsResponse instance
+	 */
+	public GD_SignatureFormDocumentsResponse GetSignatureFormDocuments(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormDocumentsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormDocumentsResponse.class);
+	}
+
+	/**
+	 * Add signature field for document in form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param body Settings of the field (optional).
+	 *
+	 * @return GD_SignatureFormFieldResponse instance
+	 */
+	public GD_SignatureFormFieldResponse AddSignatureFormField(String userId, String formId, String documentId, String fieldId, GD_SignatureFormFieldSettings body) {
+		if(userId == null || formId == null || documentId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/field/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormFieldResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureFormFieldResponse.class);
+	}
+
+	/**
+	 * Modify signature form field location
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param locationId Field location GUID (required).
+	 * @param body Settings of the field location (optional).
+	 *
+	 * @return GD_SignatureFormFieldResponse instance
+	 */
+	public GD_SignatureFormFieldResponse ModifySignatureFormFieldLocation(String userId, String formId, String documentId, String fieldId, String locationId, GD_SignatureFormFieldLocationSettings body) {
+		if(userId == null || formId == null || documentId == null || fieldId == null || locationId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/fields/{fieldId}/locations/{locationId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureFormFieldResponse.class);
+	}
+
+	/**
+	 * Remove signature form field location
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param locationId Field location GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureFormFieldLocation(String userId, String formId, String fieldId, String locationId) {
+		if(userId == null || formId == null || fieldId == null || locationId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/fields/{fieldId}/locations/{locationId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Modify signature form field
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param documentId Document GUID (required).
+	 * @param fieldId Field GUID (required).
+	 * @param body Settings of the field (optional).
+	 *
+	 * @return GD_SignatureFormFieldResponse instance
+	 */
+	public GD_SignatureFormFieldResponse ModifySignatureFormField(String userId, String formId, String documentId, String fieldId, GD_SignatureFormFieldSettings body) {
+		if(userId == null || formId == null || documentId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/field/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureFormFieldResponse.class);
+	}
+
+	/**
+	 * Delete signature form field
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param fieldId Field GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse DeleteSignatureFormField(String userId, String formId, String fieldId) {
+		if(userId == null || formId == null || fieldId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/fields/{fieldId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Get form fields for document in form per participant
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param documentId Document GUID (required).
+	 *
+	 * @return GD_SignatureFormFieldsResponse instance
+	 */
+	public GD_SignatureFormFieldsResponse GetSignatureFormFields(String userId, String formId, String documentId) {
+		if(userId == null || formId == null || documentId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/fields';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormFieldsResponse.class);
+	}
+
+	/**
+	 * Get signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return GD_SignatureFormResponse instance
+	 */
+	public GD_SignatureFormResponse GetSignatureForm(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormResponse.class);
+	}
+
+	/**
+	 * Modify signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param body Settings of the form (optional).
+	 *
+	 * @return GD_SignatureFormResponse instance
+	 */
+	public GD_SignatureFormResponse ModifySignatureForm(String userId, String formId, GD_SignatureFormSettings body) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureFormResponse.class);
+	}
+
+	/**
+	 * Publish signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return GD_SignatureStatusResponse instance
+	 */
+	public GD_SignatureStatusResponse PublishSignatureForm(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/publish';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
+	}
+
+	/**
+	 * Rename signature form
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param name New form name (required).
+	 *
+	 * @return GD_SignatureFormResponse instance
+	 */
+	public GD_SignatureFormResponse RenameSignatureForm(String userId, String formId, String name) {
+		if(userId == null || formId == null || name == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (name != null) {
+			queryParams.put('new_name', GD_Utils.toPathValue(name));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureFormResponse.class);
+	}
+
+	/**
+	 * Add signature form fields from template
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 * @param templateId Template GUID (required).
+	 *
+	 * @return GD_SignatureFormResponse instance
+	 */
+	public GD_SignatureFormResponse UpdateSignatureFormFromTemplate(String userId, String formId, String templateId) {
+		if(userId == null || formId == null || templateId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/templates/{templateId}';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		resourcePath = resourcePath.replace('{' + 'templateId' + '}', GD_Utils.toPathValue(templateId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureFormResponse.class);
+	}
+
+	/**
+	 * Get signature forms
+	 *
+	 * @param userId User GUID (required).
+	 * @param statusId Filter forms by statusId (optional).
+	 * @param page Show records for page number (optional).
+	 * @param m_date Filter forms by date (optional).
+	 * @param name Filter forms by name (optional).
+	 * @param records Show records count (optional).
+	 * @param documentId Filter forms by document GUID (optional).
+	 *
+	 * @return GD_SignatureFormsResponse instance
+	 */
+	public GD_SignatureFormsResponse GetSignatureForms(String userId, String statusId, Integer page, String m_date, String name, Integer records, String documentId) {
+		if(userId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (statusId != null) {
+			queryParams.put('statusId', GD_Utils.toPathValue(statusId));
+		}
+		if (page != null) {
+			queryParams.put('page', GD_Utils.toPathValue(page));
+		}
+		if (m_date != null) {
+			queryParams.put('date', GD_Utils.toPathValue(m_date));
+		}
+		if (name != null) {
+			queryParams.put('name', GD_Utils.toPathValue(name));
+		}
+		if (records != null) {
+			queryParams.put('records', GD_Utils.toPathValue(records));
+		}
+		if (documentId != null) {
+			queryParams.put('documentId', GD_Utils.toPathValue(documentId));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormsResponse.class);
+	}
+
+	/**
+	 * Get form recources
+	 *
+	 * @param userId User GUID (required).
+	 * @param statusIds Form status identifier - comma separated list (required).
+	 *
+	 * @return GD_SignatureFormResourcesResponse instance
+	 */
+	public GD_SignatureFormResourcesResponse GetSignatureFormResources(String userId, String statusIds) {
+		if(userId == null || statusIds == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/resources';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		if (statusIds != null) {
+			queryParams.put('statusIds', GD_Utils.toPathValue(statusIds));
+		}
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SignatureFormResourcesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormResourcesResponse.class);
+	}
+
+	/**
+	 * Get signed form documents
+	 *
+	 * @param userId User GUID (required).
+	 * @param formId Form GUID (required).
+	 *
+	 * @return Blob instance
+	 */
+	public Blob GetSignedFormDocuments(String userId, String formId) {
+		if(userId == null || formId == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/signature/{userId}/forms/{formId}/documents/get';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
 	}
 
 	/**
@@ -1093,1629 +2673,53 @@ public with sharing class GD_SignatureApi {
 	}
 
 	/**
-	 * Restart expired envelope
+	 * Get template recources
 	 *
 	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
 	 *
-	 * @return GD_SignatureStatusResponse instance
+	 * @return GD_SignatureTemplateResourcesResponse instance
 	 */
-	public GD_SignatureStatusResponse RestartExpiredSignatureEnvelope(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/restart';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Send envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param body Webhook Callback Url (optional).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse SignatureEnvelopeSend(String userId, String envelopeId, Blob body) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/send';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Sign envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse SignEnvelope(String userId, String envelopeId, String recipientId) {
-		if(userId == null || envelopeId == null || recipientId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/sign';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get signature envelopes
-	 *
-	 * @param userId User GUID (required).
-	 * @param statusId Filter envelopes by statusId (optional).
-	 * @param page Show records for page number (optional).
-	 * @param m_date Filter envelopes by date (optional).
-	 * @param name Filter envelopes by name (optional).
-	 * @param records Show records count (optional).
-	 * @param document Filter envelopes by original document md5 checksum (optional).
-	 * @param recipient Filter envelopes by recipient email (optional).
-	 *
-	 * @return GD_SignatureEnvelopesResponse instance
-	 */
-	public GD_SignatureEnvelopesResponse GetSignatureEnvelopes(String userId, String statusId, Integer page, String m_date, String name, Integer records, String document, String recipient) {
+	public GD_SignatureTemplateResourcesResponse GetSignatureTemplateResources(String userId) {
 		if(userId == null ) {
 			throw new GD_ApiException('missing required params');
 		}
-		String resourcePath = '/signature/{userId}/envelopes';
+		String resourcePath = '/signature/{userId}/templates/resources';
 
 		// replace path parameters
 		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
 		// add query parameters
 		Map<String, String> queryParams = new Map<String, String>();
-		if (statusId != null) {
-			queryParams.put('statusId', GD_Utils.toPathValue(statusId));
-		}
-		if (page != null) {
-			queryParams.put('page', GD_Utils.toPathValue(page));
-		}
-		if (m_date != null) {
-			queryParams.put('date', GD_Utils.toPathValue(m_date));
-		}
-		if (name != null) {
-			queryParams.put('name', GD_Utils.toPathValue(name));
-		}
-		if (records != null) {
-			queryParams.put('records', GD_Utils.toPathValue(records));
-		}
-		if (document != null) {
-			queryParams.put('document', GD_Utils.toPathValue(document));
-		}
-		if (recipient != null) {
-			queryParams.put('recipient', GD_Utils.toPathValue(recipient));
-		}
 		// add header parameters
 		Map<String, String> headerParams = new Map<String, String>();
 		// make the API Call
-		return (GD_SignatureEnvelopesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopesResponse.class);
+		return (GD_SignatureTemplateResourcesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureTemplateResourcesResponse.class);
 	}
 
 	/**
-	 * Get envelope recources
+	 * Get signature fields
 	 *
 	 * @param userId User GUID (required).
-	 * @param statusIds Envelope status identifier - comma separated list (optional).
+	 * @param fieldId Filter fields by id (optional).
 	 *
-	 * @return GD_SignatureEnvelopeResourcesResponse instance
+	 * @return GD_SignatureFieldsResponse instance
 	 */
-	public GD_SignatureEnvelopeResourcesResponse GetSignatureEnvelopeResources(String userId, String statusIds) {
+	public GD_SignatureFieldsResponse GetFieldsList(String userId, String fieldId) {
 		if(userId == null ) {
 			throw new GD_ApiException('missing required params');
 		}
-		String resourcePath = '/signature/{userId}/envelopes/resources';
+		String resourcePath = '/signature/{userId}/fields';
 
 		// replace path parameters
 		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
 		// add query parameters
 		Map<String, String> queryParams = new Map<String, String>();
-		if (statusIds != null) {
-			queryParams.put('statusIds', GD_Utils.toPathValue(statusIds));
+		if (fieldId != null) {
+			queryParams.put('id', GD_Utils.toPathValue(fieldId));
 		}
 		// add header parameters
 		Map<String, String> headerParams = new Map<String, String>();
 		// make the API Call
-		return (GD_SignatureEnvelopeResourcesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeResourcesResponse.class);
-	}
-
-	/**
-	 * Get signature envelopes where the user is recipient
-	 *
-	 * @param userId User GUID (required).
-	 * @param statusId Filter envelopes by statusId (optional).
-	 * @param page Show records for page number (optional).
-	 * @param records Show records count (optional).
-	 *
-	 * @return GD_SignatureEnvelopesResponse instance
-	 */
-	public GD_SignatureEnvelopesResponse GetRecipientSignatureEnvelopes(String userId, String statusId, Integer page, Integer records) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/recipient';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (statusId != null) {
-			queryParams.put('statusId', GD_Utils.toPathValue(statusId));
-		}
-		if (page != null) {
-			queryParams.put('page', GD_Utils.toPathValue(page));
-		}
-		if (records != null) {
-			queryParams.put('records', GD_Utils.toPathValue(records));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopesResponse.class);
-	}
-
-	/**
-	 * Archive signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse ArchiveSignatureForm(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/archive';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Complete signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse CompleteSignatureForm(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/complete';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Create signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param name Form name (optional).
-	 * @param templateId A templateGuid of the template which will be used to created the new form (optional).
-	 * @param assemblyId A guid of the assembly which will be used to created the new form (optional).
-	 * @param body Settings of the new form (optional).
-	 *
-	 * @return GD_SignatureFormResponse instance
-	 */
-	public GD_SignatureFormResponse CreateSignatureForm(String userId, String name, String templateId, Integer assemblyId, GD_SignatureFormSettings body) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/form';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (name != null) {
-			queryParams.put('name', GD_Utils.toPathValue(name));
-		}
-		if (templateId != null) {
-			queryParams.put('templateId', GD_Utils.toPathValue(templateId));
-		}
-		if (assemblyId != null) {
-			queryParams.put('assemblyId', GD_Utils.toPathValue(assemblyId));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureFormResponse.class);
-	}
-
-	/**
-	 * Delete signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureForm(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Add document in form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param order Document order (optional).
-	 *
-	 * @return GD_SignatureFormDocumentResponse instance
-	 */
-	public GD_SignatureFormDocumentResponse AddSignatureFormDocument(String userId, String formId, String documentId, Integer order) {
-		if(userId == null || formId == null || documentId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/document/{documentId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (order != null) {
-			queryParams.put('order', GD_Utils.toPathValue(order));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormDocumentResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureFormDocumentResponse.class);
-	}
-
-	/**
-	 * Delete document from form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param documentId Document GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureFormDocument(String userId, String formId, String documentId) {
-		if(userId == null || formId == null || documentId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get documents in form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return GD_SignatureFormDocumentsResponse instance
-	 */
-	public GD_SignatureFormDocumentsResponse GetSignatureFormDocuments(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormDocumentsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormDocumentsResponse.class);
-	}
-
-	/**
-	 * Add signature field for document in form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param body Settings of the field (optional).
-	 *
-	 * @return GD_SignatureFormFieldResponse instance
-	 */
-	public GD_SignatureFormFieldResponse AddSignatureFormField(String userId, String formId, String documentId, String fieldId, GD_SignatureFormFieldSettings body) {
-		if(userId == null || formId == null || documentId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/field/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormFieldResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureFormFieldResponse.class);
-	}
-
-	/**
-	 * Modify signature form field location
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param locationId Field location GUID (required).
-	 * @param body Settings of the field location (optional).
-	 *
-	 * @return GD_SignatureFormFieldResponse instance
-	 */
-	public GD_SignatureFormFieldResponse ModifySignatureFormFieldLocation(String userId, String formId, String documentId, String fieldId, String locationId, GD_SignatureFormFieldLocationSettings body) {
-		if(userId == null || formId == null || documentId == null || fieldId == null || locationId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/fields/{fieldId}/locations/{locationId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureFormFieldResponse.class);
-	}
-
-	/**
-	 * Remove signature form field location
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param locationId Field location GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureFormFieldLocation(String userId, String formId, String fieldId, String locationId) {
-		if(userId == null || formId == null || fieldId == null || locationId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/fields/{fieldId}/locations/{locationId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Modify signature form field
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param body Settings of the field (optional).
-	 *
-	 * @return GD_SignatureFormFieldResponse instance
-	 */
-	public GD_SignatureFormFieldResponse ModifySignatureFormField(String userId, String formId, String documentId, String fieldId, GD_SignatureFormFieldSettings body) {
-		if(userId == null || formId == null || documentId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/field/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureFormFieldResponse.class);
-	}
-
-	/**
-	 * Delete signature form field
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param fieldId Field GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureFormField(String userId, String formId, String fieldId) {
-		if(userId == null || formId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/fields/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get form fields for document in form per participant
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param documentId Document GUID (required).
-	 *
-	 * @return GD_SignatureFormFieldsResponse instance
-	 */
-	public GD_SignatureFormFieldsResponse GetSignatureFormFields(String userId, String formId, String documentId) {
-		if(userId == null || formId == null || documentId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents/{documentId}/fields';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormFieldsResponse.class);
-	}
-
-	/**
-	 * Get signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return GD_SignatureFormResponse instance
-	 */
-	public GD_SignatureFormResponse GetSignatureForm(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormResponse.class);
-	}
-
-	/**
-	 * Modify signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param body Settings of the form (optional).
-	 *
-	 * @return GD_SignatureFormResponse instance
-	 */
-	public GD_SignatureFormResponse ModifySignatureForm(String userId, String formId, GD_SignatureFormSettings body) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureFormResponse.class);
-	}
-
-	/**
-	 * Publish signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse PublishSignatureForm(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/publish';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Rename signature form
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param name New form name (required).
-	 *
-	 * @return GD_SignatureFormResponse instance
-	 */
-	public GD_SignatureFormResponse RenameSignatureForm(String userId, String formId, String name) {
-		if(userId == null || formId == null || name == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (name != null) {
-			queryParams.put('new_name', GD_Utils.toPathValue(name));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureFormResponse.class);
-	}
-
-	/**
-	 * Add signature form fields from template
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 * @param templateId Template GUID (required).
-	 *
-	 * @return GD_SignatureFormResponse instance
-	 */
-	public GD_SignatureFormResponse UpdateSignatureFormFromTemplate(String userId, String formId, String templateId) {
-		if(userId == null || formId == null || templateId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/templates/{templateId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		resourcePath = resourcePath.replace('{' + 'templateId' + '}', GD_Utils.toPathValue(templateId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureFormResponse.class);
-	}
-
-	/**
-	 * Get signature forms
-	 *
-	 * @param userId User GUID (required).
-	 * @param statusId Filter forms by statusId (optional).
-	 * @param page Show records for page number (optional).
-	 * @param m_date Filter forms by date (optional).
-	 * @param name Filter forms by name (optional).
-	 * @param records Show records count (optional).
-	 * @param documentId Filter forms by document GUID (optional).
-	 *
-	 * @return GD_SignatureFormsResponse instance
-	 */
-	public GD_SignatureFormsResponse GetSignatureForms(String userId, String statusId, Integer page, String m_date, String name, Integer records, String documentId) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (statusId != null) {
-			queryParams.put('statusId', GD_Utils.toPathValue(statusId));
-		}
-		if (page != null) {
-			queryParams.put('page', GD_Utils.toPathValue(page));
-		}
-		if (m_date != null) {
-			queryParams.put('date', GD_Utils.toPathValue(m_date));
-		}
-		if (name != null) {
-			queryParams.put('name', GD_Utils.toPathValue(name));
-		}
-		if (records != null) {
-			queryParams.put('records', GD_Utils.toPathValue(records));
-		}
-		if (documentId != null) {
-			queryParams.put('documentId', GD_Utils.toPathValue(documentId));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormsResponse.class);
-	}
-
-	/**
-	 * Get form recources
-	 *
-	 * @param userId User GUID (required).
-	 * @param statusIds Form status identifier - comma separated list (required).
-	 *
-	 * @return GD_SignatureFormResourcesResponse instance
-	 */
-	public GD_SignatureFormResourcesResponse GetSignatureFormResources(String userId, String statusIds) {
-		if(userId == null || statusIds == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/resources';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (statusIds != null) {
-			queryParams.put('statusIds', GD_Utils.toPathValue(statusIds));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureFormResourcesResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFormResourcesResponse.class);
-	}
-
-	/**
-	 * Get signed form documents
-	 *
-	 * @param userId User GUID (required).
-	 * @param formId Form GUID (required).
-	 *
-	 * @return Blob instance
-	 */
-	public Blob GetSignedFormDocuments(String userId, String formId) {
-		if(userId == null || formId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/forms/{formId}/documents/get';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'formId' + '}', GD_Utils.toPathValue(formId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
-	}
-
-	/**
-	 * Add Contact Integration Authorization
-	 *
-	 * @param userId User GUID (required).
-	 * @param body Authorization settings (optional).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse AddContactIntegration(String userId, String body) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/integration';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Sign document
-	 *
-	 * @param userId User GUID (required).
-	 * @param body Settings of the signing document (optional).
-	 *
-	 * @return GD_SignatureSignDocumentsResponse instance
-	 */
-	public GD_SignatureSignDocumentsResponse SignDocument(String userId, GD_SignatureSignDocumentSettings body) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/sign';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureSignDocumentsResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureSignDocumentsResponse.class);
-	}
-
-	/**
-	 * Archive envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse ArchiveSignatureEnvelope(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/archive';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get envelope audit logs
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return GD_SignatureEnvelopeAuditLogsResponse instance
-	 */
-	public GD_SignatureEnvelopeAuditLogsResponse GetEnvelopeAuditLogs(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/logs';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeAuditLogsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeAuditLogsResponse.class);
-	}
-
-	/**
-	 * Create signature envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param name Envelope name (optional).
-	 * @param body Settings of the new envelope (optional).
-	 * @param templateGuid A templateGuid of the template which will be used to created the new envelope (optional).
-	 * @param envelopeGuid A envelopeGuid of the envelope which will be used to created the new envelope (optional).
-	 *
-	 * @return GD_SignatureEnvelopeResponse instance
-	 */
-	public GD_SignatureEnvelopeResponse CreateSignatureEnvelope(String userId, String name, GD_SignatureEnvelopeSettings body, String templateGuid, Integer envelopeGuid) {
-		if(userId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelope';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (name != null) {
-			queryParams.put('name', GD_Utils.toPathValue(name));
-		}
-		if (templateGuid != null) {
-			queryParams.put('templateGuid', GD_Utils.toPathValue(templateGuid));
-		}
-		if (envelopeGuid != null) {
-			queryParams.put('envelopeGuid', GD_Utils.toPathValue(envelopeGuid));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeResponse.class);
-	}
-
-	/**
-	 * Decline envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeclineEnvelope(String userId, String envelopeId, String recipientId) {
-		if(userId == null || envelopeId == null || recipientId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/decline';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Delegate envelope recipient
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 * @param recipientEmail Delegated recipient email (required).
-	 * @param recipientFirstName Delegated recipient first name (required).
-	 * @param recipientLastName Delegated recipient last name (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DelegateEnvelopeRecipient(String userId, String envelopeId, String recipientId, String recipientEmail, String recipientFirstName, String recipientLastName) {
-		if(userId == null || envelopeId == null || recipientId == null || recipientEmail == null || recipientFirstName == null || recipientLastName == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/delegate';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (recipientEmail != null) {
-			queryParams.put('email', GD_Utils.toPathValue(recipientEmail));
-		}
-		if (recipientFirstName != null) {
-			queryParams.put('firstname', GD_Utils.toPathValue(recipientFirstName));
-		}
-		if (recipientLastName != null) {
-			queryParams.put('lastname', GD_Utils.toPathValue(recipientLastName));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Delete signature envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureEnvelope(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Add document in envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param order Document order (optional).
-	 *
-	 * @return GD_SignatureEnvelopeDocumentResponse instance
-	 */
-	public GD_SignatureEnvelopeDocumentResponse AddSignatureEnvelopeDocument(String userId, String envelopeId, String documentId, Integer order) {
-		if(userId == null || envelopeId == null || documentId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/document/{documentId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (order != null) {
-			queryParams.put('order', GD_Utils.toPathValue(order));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeDocumentResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureEnvelopeDocumentResponse.class);
-	}
-
-	/**
-	 * Get signed envelope document
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 *
-	 * @return Blob instance
-	 */
-	public Blob GetSignedEnvelopeDocument(String userId, String envelopeId, String documentId) {
-		if(userId == null || envelopeId == null || documentId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/document/{documentId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
-	}
-
-	/**
-	 * Delete document from envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureEnvelopeDocument(String userId, String envelopeId, String documentId) {
-		if(userId == null || envelopeId == null || documentId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get documents in envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return GD_SignatureEnvelopeDocumentsResponse instance
-	 */
-	public GD_SignatureEnvelopeDocumentsResponse GetSignatureEnvelopeDocuments(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeDocumentsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeDocumentsResponse.class);
-	}
-
-	/**
-	 * Get signed envelope documents
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return Blob instance
-	 */
-	public Blob GetSignedEnvelopeDocuments(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/get';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (Blob) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, Blob.class);
-	}
-
-	/**
-	 * Add signature field for document in envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param body Settings of the field (optional).
-	 *
-	 * @return GD_SignatureEnvelopeFieldsResponse instance
-	 */
-	public GD_SignatureEnvelopeFieldsResponse AddSignatureEnvelopeField(String userId, String envelopeId, String documentId, String recipientId, String fieldId, GD_SignatureEnvelopeFieldSettings body) {
-		if(userId == null || envelopeId == null || documentId == null || recipientId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeFieldsResponse.class);
-	}
-
-	/**
-	 * Assign signature envelope field
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param body Settings of the field (optional).
-	 *
-	 * @return GD_SignatureEnvelopeFieldResponse instance
-	 */
-	public GD_SignatureEnvelopeFieldResponse AssignSignatureEnvelopeField(String userId, String envelopeId, String documentId, String fieldId, GD_SignatureEnvelopeAssignFieldSettings body) {
-		if(userId == null || envelopeId == null || documentId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/field/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
-	}
-
-	/**
-	 * Fill envelope field
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param signatureId SignatureId GUID (optional).
-	 * @param body Data to be placed in field (optional).
-	 *
-	 * @return GD_SignatureEnvelopeFieldResponse instance
-	 */
-	public GD_SignatureEnvelopeFieldResponse FillEnvelopeField(String userId, String envelopeId, String documentId, String recipientId, String fieldId, String signatureId, Blob body) {
-		if(userId == null || envelopeId == null || documentId == null || recipientId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (signatureId != null) {
-			queryParams.put('signatureId', GD_Utils.toPathValue(signatureId));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
-	}
-
-	/**
-	 * Modify signature envelope field location
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param locationId Field location GUID (required).
-	 * @param body Settings of the field location (optional).
-	 *
-	 * @return GD_SignatureEnvelopeFieldResponse instance
-	 */
-	public GD_SignatureEnvelopeFieldResponse ModifySignatureEnvelopeFieldLocation(String userId, String envelopeId, String documentId, String recipientId, String fieldId, String locationId, GD_SignatureEnvelopeFieldLocationSetting body) {
-		if(userId == null || envelopeId == null || documentId == null || recipientId == null || fieldId == null || locationId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/fields/{fieldId}/locations/{locationId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
-	}
-
-	/**
-	 * Remove signature envelope field location
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param locationId Field location GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureEnvelopeFieldLocation(String userId, String envelopeId, String fieldId, String locationId) {
-		if(userId == null || envelopeId == null || fieldId == null || locationId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields/{fieldId}/locations/{locationId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		resourcePath = resourcePath.replace('{' + 'locationId' + '}', GD_Utils.toPathValue(locationId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Modify signature envelope field
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (required).
-	 * @param fieldId Field GUID (required).
-	 * @param body Settings of the field (optional).
-	 *
-	 * @return GD_SignatureEnvelopeFieldResponse instance
-	 */
-	public GD_SignatureEnvelopeFieldResponse ModifySignatureEnvelopeField(String userId, String envelopeId, String documentId, String fieldId, GD_SignatureEnvelopeFieldSettings body) {
-		if(userId == null || envelopeId == null || documentId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/field/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'documentId' + '}', GD_Utils.toPathValue(documentId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeFieldResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SignatureEnvelopeFieldResponse.class);
-	}
-
-	/**
-	 * Delete signature envelope field
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param fieldId Field GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureEnvelopeField(String userId, String envelopeId, String fieldId) {
-		if(userId == null || envelopeId == null || fieldId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields/{fieldId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'fieldId' + '}', GD_Utils.toPathValue(fieldId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get signature field for document in envelope per recipient
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param documentId Document GUID (optional).
-	 * @param recipientId Recipient GUID (optional).
-	 *
-	 * @return GD_SignatureEnvelopeFieldsResponse instance
-	 */
-	public GD_SignatureEnvelopeFieldsResponse GetSignatureEnvelopeFields(String userId, String envelopeId, String documentId, String recipientId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (documentId != null) {
-			queryParams.put('document', GD_Utils.toPathValue(documentId));
-		}
-		if (recipientId != null) {
-			queryParams.put('recipient', GD_Utils.toPathValue(recipientId));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeFieldsResponse.class);
-	}
-
-	/**
-	 * Get signature envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return GD_SignatureEnvelopeResponse instance
-	 */
-	public GD_SignatureEnvelopeResponse GetSignatureEnvelope(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeResponse.class);
-	}
-
-	/**
-	 * Modify signature envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param body Settings of the envelope (optional).
-	 *
-	 * @return GD_SignatureEnvelopeResponse instance
-	 */
-	public GD_SignatureEnvelopeResponse ModifySignatureEnvelope(String userId, String envelopeId, GD_SignatureEnvelopeSettings body) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, body, headerParams, GD_SignatureEnvelopeResponse.class);
-	}
-
-	/**
-	 * Add signature envelope recipient
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param recipientEmail Recipient email (required).
-	 * @param recipientFirstName Recipient first name (required).
-	 * @param recipientLastName Recipient last name (required).
-	 * @param order Recipient order (optional).
-	 * @param role Recipient role id (required).
-	 *
-	 * @return GD_SignatureEnvelopeRecipientResponse instance
-	 */
-	public GD_SignatureEnvelopeRecipientResponse AddSignatureEnvelopeRecipient(String userId, String envelopeId, String recipientEmail, String recipientFirstName, String recipientLastName, Integer order, String role) {
-		if(userId == null || envelopeId == null || recipientEmail == null || recipientFirstName == null || recipientLastName == null || role == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (recipientEmail != null) {
-			queryParams.put('email', GD_Utils.toPathValue(recipientEmail));
-		}
-		if (recipientFirstName != null) {
-			queryParams.put('firstname', GD_Utils.toPathValue(recipientFirstName));
-		}
-		if (recipientLastName != null) {
-			queryParams.put('lastname', GD_Utils.toPathValue(recipientLastName));
-		}
-		if (order != null) {
-			queryParams.put('order', GD_Utils.toPathValue(order));
-		}
-		if (role != null) {
-			queryParams.put('role', GD_Utils.toPathValue(role));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeRecipientResponse) apiClient.callAPI(basePath, resourcePath, 'POST', queryParams, null, headerParams, GD_SignatureEnvelopeRecipientResponse.class);
-	}
-
-	/**
-	 * Modify signature envelope recipient
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 * @param recipientEmail Recipient email (required).
-	 * @param recipientFirstName Recipient first name (required).
-	 * @param recipientLastName Recipient last name (required).
-	 * @param order Recipient order (optional).
-	 * @param role Recipient role id (required).
-	 *
-	 * @return GD_SignatureEnvelopeRecipientResponse instance
-	 */
-	public GD_SignatureEnvelopeRecipientResponse ModifySignatureEnvelopeRecipient(String userId, String envelopeId, String recipientId, String recipientEmail, String recipientFirstName, String recipientLastName, Integer order, String role) {
-		if(userId == null || envelopeId == null || recipientId == null || recipientEmail == null || recipientFirstName == null || recipientLastName == null || role == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (recipientEmail != null) {
-			queryParams.put('email', GD_Utils.toPathValue(recipientEmail));
-		}
-		if (recipientFirstName != null) {
-			queryParams.put('firstname', GD_Utils.toPathValue(recipientFirstName));
-		}
-		if (recipientLastName != null) {
-			queryParams.put('lastname', GD_Utils.toPathValue(recipientLastName));
-		}
-		if (order != null) {
-			queryParams.put('order', GD_Utils.toPathValue(order));
-		}
-		if (role != null) {
-			queryParams.put('role', GD_Utils.toPathValue(role));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeRecipientResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureEnvelopeRecipientResponse.class);
-	}
-
-	/**
-	 * Delete signature envelope recipient
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param recipientId Recipient GUID (required).
-	 *
-	 * @return GD_SignatureStatusResponse instance
-	 */
-	public GD_SignatureStatusResponse DeleteSignatureEnvelopeRecipient(String userId, String envelopeId, String recipientId) {
-		if(userId == null || envelopeId == null || recipientId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipients/{recipientId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		resourcePath = resourcePath.replace('{' + 'recipientId' + '}', GD_Utils.toPathValue(recipientId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureStatusResponse) apiClient.callAPI(basePath, resourcePath, 'DELETE', queryParams, null, headerParams, GD_SignatureStatusResponse.class);
-	}
-
-	/**
-	 * Get signature envelope recipients
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 *
-	 * @return GD_SignatureEnvelopeRecipientsResponse instance
-	 */
-	public GD_SignatureEnvelopeRecipientsResponse GetSignatureEnvelopeRecipients(String userId, String envelopeId) {
-		if(userId == null || envelopeId == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipients';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeRecipientsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureEnvelopeRecipientsResponse.class);
-	}
-
-	/**
-	 * Rename signature envelope
-	 *
-	 * @param userId User GUID (required).
-	 * @param envelopeId Envelope GUID (required).
-	 * @param name New envelope name (required).
-	 *
-	 * @return GD_SignatureEnvelopeResponse instance
-	 */
-	public GD_SignatureEnvelopeResponse RenameSignatureEnvelope(String userId, String envelopeId, String name) {
-		if(userId == null || envelopeId == null || name == null ) {
-			throw new GD_ApiException('missing required params');
-		}
-		String resourcePath = '/signature/{userId}/envelopes/{envelopeId}';
-
-		// replace path parameters
-		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
-		resourcePath = resourcePath.replace('{' + 'envelopeId' + '}', GD_Utils.toPathValue(envelopeId));
-		// add query parameters
-		Map<String, String> queryParams = new Map<String, String>();
-		if (name != null) {
-			queryParams.put('name', GD_Utils.toPathValue(name));
-		}
-		// add header parameters
-		Map<String, String> headerParams = new Map<String, String>();
-		// make the API Call
-		return (GD_SignatureEnvelopeResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, null, headerParams, GD_SignatureEnvelopeResponse.class);
+		return (GD_SignatureFieldsResponse) apiClient.callAPI(basePath, resourcePath, 'GET', queryParams, null, headerParams, GD_SignatureFieldsResponse.class);
 	}
 
 	

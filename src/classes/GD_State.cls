@@ -20,7 +20,6 @@
  */
 public with sharing class GD_State {
 
-	public String Name { get; set; }
 	
 
 }

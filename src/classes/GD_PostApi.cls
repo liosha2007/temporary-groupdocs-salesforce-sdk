@@ -20,7 +20,7 @@ public with sharing class GD_PostApi {
 	public String basePath { get; set; } 
 	
 	public GD_PostApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_PostApi(GD_ApiClient apiClient, String basePath){

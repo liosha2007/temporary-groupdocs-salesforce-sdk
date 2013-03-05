@@ -20,7 +20,7 @@ public with sharing class GD_AntApi {
 	public String basePath { get; set; } 
 	
 	public GD_AntApi(GD_ApiClient apiClient){
-		this(apiClient, 'https://api.groupdocs.com/v2.0');
+		this(apiClient, 'https://dev-api.groupdocs.com/v2.0');
 	}
 	
 	public GD_AntApi(GD_ApiClient apiClient, String basePath){
@@ -390,6 +390,32 @@ public with sharing class GD_AntApi {
 	}
 
 	/**
+	 * Resize annotation
+	 *
+	 * @param userId User GUID (required).
+	 * @param annotationId Annotation ID (required).
+	 * @param body position (required).
+	 *
+	 * @return GD_ResizeAnnotationResponse instance
+	 */
+	public GD_ResizeAnnotationResponse ResizeAnnotation(String userId, String annotationId, GD_AnnotationSizeInfo body) {
+		if(userId == null || annotationId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/ant/{userId}/annotations/{annotationId}/size';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'annotationId' + '}', GD_Utils.toPathValue(annotationId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_ResizeAnnotationResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_ResizeAnnotationResponse.class);
+	}
+
+	/**
 	 * Set Annotation Access
 	 *
 	 * @param userId User GUID (required).
@@ -558,6 +584,32 @@ public with sharing class GD_AntApi {
 			throw new GD_ApiException('missing required params');
 		}
 		String resourcePath = '/ant/{userId}/annotations/{annotationId}/textFieldInfo';
+
+		// replace path parameters
+		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));
+		resourcePath = resourcePath.replace('{' + 'annotationId' + '}', GD_Utils.toPathValue(annotationId));
+		// add query parameters
+		Map<String, String> queryParams = new Map<String, String>();
+		// add header parameters
+		Map<String, String> headerParams = new Map<String, String>();
+		// make the API Call
+		return (GD_SaveAnnotationTextResponse) apiClient.callAPI(basePath, resourcePath, 'PUT', queryParams, body, headerParams, GD_SaveAnnotationTextResponse.class);
+	}
+
+	/**
+	 * Save Text Of Text Field
+	 *
+	 * @param userId User GUID (required).
+	 * @param annotationId Annotation ID (required).
+	 * @param body Font Color (required).
+	 *
+	 * @return GD_SaveAnnotationTextResponse instance
+	 */
+	public GD_SaveAnnotationTextResponse SetTextFieldColor(String userId, String annotationId, Integer body) {
+		if(userId == null || annotationId == null || body == null ) {
+			throw new GD_ApiException('missing required params');
+		}
+		String resourcePath = '/ant/{userId}/annotations/{annotationId}/textFieldColor';
 
 		// replace path parameters
 		resourcePath = resourcePath.replace('{' + 'userId' + '}', GD_Utils.toPathValue(userId));

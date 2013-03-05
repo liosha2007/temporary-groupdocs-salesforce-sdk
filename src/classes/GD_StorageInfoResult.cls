@@ -24,6 +24,8 @@ public with sharing class GD_StorageInfoResult {
 	public Long avail_space { get; set; }
 	public Integer doc_credits { get; set; }
 	public Integer avail_credits { get; set; }
+	public Integer total_documents { get; set; }
+	public Long avail_documents { get; set; }
 	
 
 }

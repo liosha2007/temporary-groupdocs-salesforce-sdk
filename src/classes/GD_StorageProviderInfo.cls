@@ -23,7 +23,7 @@ public with sharing class GD_StorageProviderInfo {
 	public Double id { get; set; }
 	public String provider { get; set; }
 	public String m_type { get; set; }
-	public String token { get; set; }
+	public List<Integer> token { get; set; }
 	public String publicKey { get; set; }
 	public String privateKey { get; set; }
 	public String rootFolder { get; set; }
